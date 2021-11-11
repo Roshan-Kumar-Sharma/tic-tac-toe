@@ -43,7 +43,14 @@ class Board extends React.Component {
         if (winner) {
             status = "Winner: " + winner;
         } else {
-            status = `Next player: ${this.state.xIsNext ? "X" : "O"}`;
+            const gameOver = this.state.squares.filter((val) => {
+                return val === null;
+            });
+            if (gameOver.length) {
+                status = `Next player: ${this.state.xIsNext ? "X" : "O"}`;
+            } else {
+                status = `Match Draw: Nobody Won`;
+            }
         }
 
         return (
